@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDrag } from 'react-dnd'
 import { useTaskContext } from '../context/TaskContext'
 import CheckIcon from '../icons/CheckIcon'
 import UndoIcon from '../icons/UndoIcon'
@@ -8,8 +9,20 @@ import './TaskItem.css'
 const TaskItem = ({ task, showStatus = true }) => {
   const { toggleTaskStatus, showDeleteConfirmation } = useTaskContext()
 
+  const [{ isDragging }, drag] = useDrag({
+    type: 'TASK',
+    item: { id: task.id, status: task.status },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  })
+
   return (
-    <div className={`task-item ${task.status.toLowerCase()}`}>
+    <div 
+      ref={drag}
+      className={`task-item ${task.status.toLowerCase()} ${isDragging ? 'dragging' : ''}`}
+      style={{ opacity: isDragging ? 0.5 : 1 }}
+    >
       <div className="task-content">
         <span className="task-text">{task.text}</span>
         {showStatus && (

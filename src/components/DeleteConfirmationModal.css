@@ -87,3 +87,17 @@
   transform: translateY(-1px);
   box-shadow: 0 14px 28px rgba(243, 18, 96, 0.35);
 }
+
+
+/* Cursor styles */
+.modal-overlay {
+  cursor: default;
+}
+
+.cancel-btn {
+  cursor: pointer;
+}
+
+.confirm-btn {
+  cursor: pointer;
+}

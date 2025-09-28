@@ -107,3 +107,24 @@
 .delete-btn:active {
   transform: translateY(0);
 }
+
+/* Cursor styles for drag and drop */
+.task-item {
+  cursor: grab;
+}
+
+.task-item:active {
+  cursor: grabbing;
+}
+
+.task-item.dragging {
+  cursor: grabbing;
+}
+
+.toggle-btn {
+  cursor: pointer;
+}
+
+.delete-btn {
+  cursor: pointer;
+}

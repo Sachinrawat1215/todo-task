@@ -70,6 +70,34 @@ export const TaskProvider = ({ children }) => {
     setTaskToDelete(null)
   }
 
+  // Move task for drag and drop functionality
+  const moveTask = (draggedTaskId, targetStatus, targetIndex = null) => {
+    setTasks(prevTasks => {
+      const draggedTask = prevTasks.find(task => task.id === draggedTaskId)
+      if (!draggedTask) return prevTasks
+
+      // Remove the dragged task from its current position
+      const tasksWithoutDragged = prevTasks.filter(task => task.id !== draggedTaskId)
+      
+      // Update the task status if moving to a different section
+      const updatedTask = { ...draggedTask, status: targetStatus }
+      
+      // If targetIndex is provided, insert at specific position
+      if (targetIndex !== null) {
+        const targetSectionTasks = tasksWithoutDragged.filter(task => task.status === targetStatus)
+        const otherTasks = tasksWithoutDragged.filter(task => task.status !== targetStatus)
+        
+        // Insert at the specified index within the target section
+        targetSectionTasks.splice(targetIndex, 0, updatedTask)
+        
+        return [...otherTasks, ...targetSectionTasks]
+      } else {
+        // If no specific index, add to the end of the target section
+        return [...tasksWithoutDragged, updatedTask]
+      }
+    })
+  }
+
   // Filter tasks based on status
   const getFilteredTasks = (status) => {
     return tasks.filter(task => task.status === status)
@@ -102,6 +130,7 @@ export const TaskProvider = ({ children }) => {
     showDeleteConfirmation,
     confirmDeleteTask,
     cancelDeleteTask,
+    moveTask,
     getFilteredTasks
   }
 

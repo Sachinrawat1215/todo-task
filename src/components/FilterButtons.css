@@ -5,12 +5,17 @@
   padding-top: 12px;
 }
 
+/* Cursor styles */
+.filter-btn {
+  cursor: pointer;
+}
+
 .filter-btn {
   appearance: none;
   background: var(--bg-elevated);
   color: var(--text);
   border: 1px solid var(--border);
-  padding: 10px 14px; /* increased top padding */
+  padding:7px 16px; /* increased top padding */
   border-radius: 12px;
   font-weight: 600;
   font-size: 14px;

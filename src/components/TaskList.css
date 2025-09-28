@@ -30,3 +30,19 @@
   border-radius: 12px;
   background: var(--bg-soft);
 }
+
+/* Drop zone styles */
+.task-list-container.drop-zone-active {
+  background-color: var(--accent-light);
+  border: 2px dashed var(--accent);
+  transform: scale(1.02);
+  transition: all 0.2s ease;
+}
+
+.task-list-container {
+  cursor: default;
+}
+
+.task-list-container.drop-zone-active {
+  cursor: copy;
+}

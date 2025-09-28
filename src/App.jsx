@@ -1,4 +1,6 @@
 import React from 'react'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import { TaskProvider, useTaskContext } from './context/TaskContext'
 import TaskForm from './components/TaskForm'
 import FilterButtons from './components/FilterButtons'
@@ -53,9 +55,11 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <TaskProvider>
-      <AppContent />
-    </TaskProvider>
+    <DndProvider backend={HTML5Backend}>
+      <TaskProvider>
+        <AppContent />
+      </TaskProvider>
+    </DndProvider>
   )
 }
 
