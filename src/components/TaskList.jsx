@@ -31,11 +31,27 @@ const TaskList = ({ title, tasks, showStatus = true, emptyMessage }) => {
     <div 
       ref={drop}
       className={`task-list-container ${isOver ? 'drop-zone-active' : ''}`}
+      role="region"
+      aria-labelledby={`task-list-title-${title.replace(/\s+/g, '-').toLowerCase()}`}
+      aria-describedby={`task-list-desc-${title.replace(/\s+/g, '-').toLowerCase()}`}
     >
-      <h2 className="task-list-title">
+      <h3 
+        className="task-list-title"
+        id={`task-list-title-${title.replace(/\s+/g, '-').toLowerCase()}`}
+      >
         {title} ({tasks.length})
-      </h2>
-      <div className="task-list">
+      </h3>
+      <div 
+        id={`task-list-desc-${title.replace(/\s+/g, '-').toLowerCase()}`}
+        className="sr-only"
+      >
+        {isOver ? `Drop zone active for ${title.toLowerCase()}` : `List of ${tasks.length} ${title.toLowerCase()}`}
+      </div>
+      <ul 
+        className="task-list"
+        role="list"
+        aria-label={`${title} containing ${tasks.length} tasks`}
+      >
         {tasks.map(task => (
           <TaskItem 
             key={task.id} 
@@ -44,9 +60,13 @@ const TaskList = ({ title, tasks, showStatus = true, emptyMessage }) => {
           />
         ))}
         {tasks.length === 0 && (
-          <p className="empty-message">{emptyMessage}</p>
+          <li role="listitem">
+            <p className="empty-message" aria-live="polite">
+              {emptyMessage}
+            </p>
+          </li>
         )}
-      </div>
+      </ul>
     </div>
   )
 }

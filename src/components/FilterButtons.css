@@ -34,8 +34,24 @@
 }
 
 .filter-btn.active {
-  background: #11181c;
-  color: #fff;
-  border-color: #11181c;
-  box-shadow: 0 6px 20px rgba(17, 24, 28, 0.15);
+  background-color: var(--accent);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 112, 243, 0.3);
+}
+
+.filter-btn:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

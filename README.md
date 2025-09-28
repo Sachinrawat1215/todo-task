@@ -2,7 +2,7 @@
 
 A beautiful, feature-rich todo application built with React and Vite. Stay organized and productive with an intuitive interface, drag-and-drop functionality, and dark/light theme support.
 
-![Todo App Preview](https://via.placeholder.com/800x400/0070f3/ffffff?text=Todo+App+Preview)
+![Todo App Preview](https://limetraytodo.netlify.app/)
 
 ## ✨ Features
 
@@ -26,7 +26,7 @@ A beautiful, feature-rich todo application built with React and Vite. Stay organ
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/to-do-app.git
+   git clone https://github.com/Sachinrawat1215/todo-task
    cd to-do-app
    ```
 
@@ -125,6 +125,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Made with ❤️ by [Your Name]**
+**Made with ❤️**
 
 *Stay organized, stay productive!* 🚀

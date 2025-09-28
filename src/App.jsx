@@ -14,45 +14,49 @@ const AppContent = () => {
   const { allTasks, pendingTasks, completedTasks } = useTaskContext()
 
   return (
-    <div className="app">
+    <div className="app" role="application" aria-label="Todo Application">
       <div className="container">
-        <header className="app-header">
+        <header className="app-header" role="banner">
           <div className="header-content">
             <div className="header-text">
-              <h1 className="app-title">Todo App</h1>
-              <p className="app-subtitle">Stay organized and productive</p>
+              <h1 className="app-title" id="app-title">Todo App</h1>
+              <p className="app-subtitle" aria-describedby="app-title">Stay organized and productive</p>
             </div>
             <ThemeToggle />
           </div>
         </header>
         
-        <div className="controls-card">
-          <TaskForm />
-          <FilterButtons />
-        </div>
+        <main role="main" aria-labelledby="app-title">
+          <section className="controls-card" aria-label="Task management controls">
+            <h2 className="sr-only">Add and Filter Tasks</h2>
+            <TaskForm />
+            <FilterButtons />
+          </section>
 
-        <div className="tasks-container">
-          <TaskList 
-            title="All Tasks"
-            tasks={allTasks}
-            showStatus={true}
-            emptyMessage="No tasks yet. Add one above!"
-          />
-          
-          <TaskList 
-            title="Pending Tasks"
-            tasks={pendingTasks}
-            showStatus={false}
-            emptyMessage="No pending tasks!"
-          />
-          
-          <TaskList 
-            title="Completed Tasks"
-            tasks={completedTasks}
-            showStatus={false}
-            emptyMessage="No completed tasks yet!"
-          />
-        </div>
+          <section className="tasks-container" aria-label="Task lists" role="region">
+            <h2 className="sr-only">Task Lists</h2>
+            <TaskList 
+              title="All Tasks"
+              tasks={allTasks}
+              showStatus={true}
+              emptyMessage="No tasks yet. Add one above!"
+            />
+            
+            <TaskList 
+              title="Pending Tasks"
+              tasks={pendingTasks}
+              showStatus={false}
+              emptyMessage="No pending tasks!"
+            />
+            
+            <TaskList 
+              title="Completed Tasks"
+              tasks={completedTasks}
+              showStatus={false}
+              emptyMessage="No completed tasks yet!"
+            />
+          </section>
+        </main>
 
         <DeleteConfirmationModal />
       </div>

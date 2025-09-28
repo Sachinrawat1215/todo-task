@@ -37,9 +37,29 @@
   transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
-.add-btn:hover {
+.add-btn:hover:not(:disabled) {
+  background-color: var(--accent-dark);
+  color: black;
   transform: translateY(-1px);
-  box-shadow: 0 10px 30px rgba(0, 112, 243, 0.25);
+}
+
+.add-btn:disabled {
+  background-color: var(--border);
+  color: var(--text-secondary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .add-btn:active {
@@ -59,4 +79,16 @@
 
 .add-btn {
   cursor: pointer;
+}
+
+/* Dark theme specific styles */
+[data-theme="dark"] .add-btn {
+  background: #0070f3;
+  color: white;
+  border-color: white;
+}
+
+[data-theme="dark"] .add-btn:hover:not(:disabled) {
+  background-color: #f0f0f0;
+  color: black;
 }
