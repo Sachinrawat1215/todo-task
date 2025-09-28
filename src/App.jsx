@@ -1,34 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
+import { TaskProvider, useTaskContext } from './context/TaskContext'
+import TaskForm from './components/TaskForm'
+import FilterButtons from './components/FilterButtons'
+import TaskList from './components/TaskList'
+import DeleteConfirmationModal from './components/DeleteConfirmationModal'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const AppContent = () => {
+  const { allTasks, pendingTasks, completedTasks } = useTaskContext()
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <div className="container">
+        <header className="app-header">
+          <h1 className="app-title">Todo App</h1>
+          <p className="app-subtitle">Stay organized and productive</p>
+        </header>
+        
+        <div className="controls-card">
+          <TaskForm />
+          <FilterButtons />
+        </div>
+
+        <div className="tasks-container">
+          <TaskList 
+            title="All Tasks"
+            tasks={allTasks}
+            showStatus={true}
+            emptyMessage="No tasks yet. Add one above!"
+          />
+          
+          <TaskList 
+            title="Pending Tasks"
+            tasks={pendingTasks}
+            showStatus={false}
+            emptyMessage="No pending tasks!"
+          />
+          
+          <TaskList 
+            title="Completed Tasks"
+            tasks={completedTasks}
+            showStatus={false}
+            emptyMessage="No completed tasks yet!"
+          />
+        </div>
+
+        <DeleteConfirmationModal />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
+  )
+}
+
+const App = () => {
+  return (
+    <TaskProvider>
+      <AppContent />
+    </TaskProvider>
   )
 }
 
