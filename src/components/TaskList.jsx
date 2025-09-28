@@ -7,11 +7,10 @@ import './TaskList.css'
 const TaskList = ({ title, tasks, showStatus = true, emptyMessage }) => {
   const { moveTask } = useTaskContext()
 
-  // Determine target status based on title
   const getTargetStatus = (title) => {
     if (title.includes('Pending')) return 'Pending'
     if (title.includes('Completed')) return 'Completed'
-    return 'Pending' // Default for "All Tasks"
+    return 'Pending'
   }
 
   const targetStatus = getTargetStatus(title)

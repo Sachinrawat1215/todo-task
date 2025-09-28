@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDrag } from 'react-dnd'
 import { useTaskContext } from '../context/TaskContext'
+import { useTheme } from '../context/ThemeContext'
 import CheckIcon from '../icons/CheckIcon'
 import UndoIcon from '../icons/UndoIcon'
 import DeleteIcon from '../icons/DeleteIcon'
@@ -8,6 +9,7 @@ import './TaskItem.css'
 
 const TaskItem = ({ task, showStatus = true }) => {
   const { toggleTaskStatus, showDeleteConfirmation } = useTaskContext()
+  const { isLight } = useTheme()
 
   const [{ isDragging }, drag] = useDrag({
     type: 'TASK',
@@ -44,7 +46,7 @@ const TaskItem = ({ task, showStatus = true }) => {
           className="delete-btn"
           title="Delete task"
         >
-          <DeleteIcon color="black" />
+          <DeleteIcon color={isLight ? "black" : "white"} />
         </button>
       </div>
     </div>

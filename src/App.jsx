@@ -2,10 +2,12 @@ import React from 'react'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { TaskProvider, useTaskContext } from './context/TaskContext'
+import { ThemeProvider } from './context/ThemeContext'
 import TaskForm from './components/TaskForm'
 import FilterButtons from './components/FilterButtons'
 import TaskList from './components/TaskList'
 import DeleteConfirmationModal from './components/DeleteConfirmationModal'
+import ThemeToggle from './components/ThemeToggle'
 import './App.css'
 
 const AppContent = () => {
@@ -15,8 +17,13 @@ const AppContent = () => {
     <div className="app">
       <div className="container">
         <header className="app-header">
-          <h1 className="app-title">Todo App</h1>
-          <p className="app-subtitle">Stay organized and productive</p>
+          <div className="header-content">
+            <div className="header-text">
+              <h1 className="app-title">Todo App</h1>
+              <p className="app-subtitle">Stay organized and productive</p>
+            </div>
+            <ThemeToggle />
+          </div>
         </header>
         
         <div className="controls-card">
@@ -55,11 +62,13 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <DndProvider backend={HTML5Backend}>
-      <TaskProvider>
-        <AppContent />
-      </TaskProvider>
-    </DndProvider>
+    <ThemeProvider>
+      <DndProvider backend={HTML5Backend}>
+        <TaskProvider>
+          <AppContent />
+        </TaskProvider>
+      </DndProvider>
+    </ThemeProvider>
   )
 }
 
